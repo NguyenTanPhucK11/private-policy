@@ -1,0 +1,76 @@
+body {
+  justify-content: center;
+  text-align: start;
+  font-size: 1rem;
+  margin: 100px 200px 200px 200px;
+  line-height: 2rem;
+}
+
+.content {
+  color: #657786;
+}
+
+.content .content__rules {
+  text-align: center;
+  color: red;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.content .content__concept {
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 700;
+  color: rgb(28, 28, 136);
+}
+
+.content .content__description {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(28, 28, 136);
+}
+
+.content .content__subDescription {
+  font-size: 16px;
+  margin: 4px;
+  color: rgb(28, 28, 136);
+}
+
+.content .content__title {
+  font-size: 24px;
+  font-weight: 700;
+  color: rgb(79, 79, 92);
+}
+
+.content__concept > i {
+  float: right;
+  color: purple;
+  font-size: 12px;
+}
+.content .content__subtitle {
+  color: rgb(28, 69, 125);
+}
+
+.content .content__note {
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(28, 69, 125);
+}
+
+.content__note > i {
+  color: rgb(154, 154, 46);
+}
+
+.content .content__info {
+  font-weight: 700;
+  color: black;
+}
+
+.content .content__general {
+  padding: 0px 16px;
+}
+
+.content__general > li > i {
+  color: red;
+}

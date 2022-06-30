@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body
+    x-data="
+    {   
+        data : [],
+        listRules : ['Normal working time must not exceed 8 hours per day or 40 hours per week.',
+        'From Monday to Friday.',
+        'Saturday and Sunday off each week.',
+        'The working time is from 9h-12h & 13h-18h, lunch break at 1h. If you take leave in the afternoon, please arrange and work enough 4 hours in the morning.'],
+
+        detailProbation:{
+            subtitle: 'The two parties shall sign \'Probationary contracts\'. Employees must go through the probationary period as follows:',
+            text:['Probation within 2 months',
+            'The salary of the employee during the probationary period is paid 85% of the wage for the job.',
+            'During the probation period, an employer doesn\'t have to pay Social, health, and unemployment insurance.',
+            'During the probation period, each party may cancel the probation agreement without prior notice and compensation if the probationary job fails to meet the requirements that have been agreed by the two parties.',
+            'If the probationary job is satisfactory, the employer shall sign a labor contract with the employee and pay full Social, health, and unemployment insurance.'],
+            note: 'Days’ leave will be not valid during the probationary period.'
+        },
+
+        listPassProbation :[
+        'SS signs the labor contract with you for one year.',
+        'You start to join the Labor Union at SS. The Labor Union will collect 50.000VND per month, and deduct it into your salary. This amount of money combined with the Company’s is used to organize a birthday and farewell party per month.',
+        ],
+
+        listBenefits:{
+            mainContent : [
+            {   
+                title : 'Increase Wages:',
+                description: 'Annually, employers will consider increasing salary for employees at least once, based on:',
+                subtitle : [{
+                    sub : '',
+                    text : [
+                    'The business situation of the Company',
+                    'Work efficiency of employees during that year',
+                    'Achievements outperform work needs',
+                    'Strictly abiding by regulations and rules of the Company',
+                    {
+                        main : 'There are two periods of review salary per year:',
+                        sub :['Review in July - Apply salary in August','Review in January - Apply salary in February']
+                    },
+                    'By system salary of company 5%; 10%; 15%; 20%',
+                    ]
+                }]
+            },
+            {
+                title : 'Annual leave, Unpaid Time Off:',
+                description: '',
+                subtitle : [{
+                    sub : 'Personal leave, unpaid leave',
+                    subDescription:'An employee may take fully paid leave for personal reasons in the following cases:',
+                    text:[
+                    'Marriage: 3 days;',
+                    'Marriage of his/her child: 1 day;',
+                    'Death of a blood parent or a parent of his/her spouse, his/her spouse, or child: 3 days.',
+                    'An employee may take 1 day off without pay and shall inform the employer when a paternal or maternal grandparent or blood sibling dies; his/her father or mother gets married, or a blood sibling gets married.',
+                    'An employee may discuss and agree with the employer on unpaid leave in addition to the leaves specified in Clauses 1 and 2 of this Article.']
+                },
+                {
+                    sub : 'Annual leave',
+                    text:[
+                    'After signing the official contract, the employee who has worked for 12 months at the Company is entitled to 12 days of leave, after every 3 years of continuous working at the Company, the number of days of leave will be increased by 1 day and maximum 5 days in future.',
+                    'If the employee has less than 12 months of work, the number of annual leave days is calculated in proportion to the number of working months.',
+                    {
+                        main:'Regulations on how to resolve the number of days of unexcused leave in the year are as follows:',
+                        sub: [
+                        'In case the employee does not leave all the annual leave days, the number of remaining days is transferred to the following year.',
+                        'In cases of termination of contracts, the number of days of unexcused leave will be paid in cash corresponding to 100% of the basic salary at the time of leave.',
+                        'Days’ leave from the previous year will be transferred to the next year. However, on March 31st, we will only keep 3 days’ annual leave of the previous year.']
+                    }
+                    ]
+                },
+                {
+                    sub : 'Male employees currently paying social insurance premiums whose wives give birth to children are entitled to a maternity leave of:',
+                    text:[
+                    '5 working days;',
+                    '7 working days, in case their wives undergo a surgical birth or give birth to children before 32 weeks of pregnancy;',
+                    '10 working days, in case their wives give birth to twins; or additional 3 working days for each infant from the second;',
+                    '14 working days, in case their wives give birth to twins or more infants and take childbirth operations.',
+                    'The maternity leave period specified in this Clause must be within the first 30 days after the date of childbirth.',
+                    ]
+                },
+                {
+                    sub : 'Note',
+                    text:[
+                    'You are responsible to make sure that your manager and your co-workers know about the vacation and that arrangements have been made to cover for you while you\'re away.',
+                    'In general, it is considered good practice to provide two days’ notice for each day of vacation. For example, if you\'re taking a two-week vacation, let us know a month in advance. For a one-day vacation, two days’ notice is usually sufficient.',
+                    'Under some circumstances, we will allow you to take unpaid leaves.',
+                    ]
+                },
+                {
+                    sub : 'Sick and Family Medical leave',
+                    subDescription: 'Sick Leave',
+                    text:[
+                    'Add 5 days off for sickness each year. A doctor\'s certificate is required if the employee is sick for more than 1 day.',
+                    ]
+                },
+                {
+                    sub : 'Public and New Year holidays',
+                    subDescription: 'An employee is entitled to fully paid days off on the following public and New Year holidays:',
+                    text:[
+                    'Calendar New Year Holiday: 1 day (the first day of January of the calendar year);',
+                    'Lunar New Year Holidays: Government',
+                    'Victory Day: 1 day (the thirtieth day of April of each calendar year);',
+                    'International Labor Day: 1 day (the first day of May of each calendar year);',
+                    'National Day: 1 day (the second day of September of each calendar year);',
+                    'Commemorative Celebration of Vietnam’s Forefather - Kings Hung: 1 day (the tenth of March of the lunar year).',
+                    'When a holiday falls on Saturday, we take Friday off. When a holiday falls on Sunday, we take Monday off.',
+                    {
+                      main:'See also, our vacation policies, which are very generous and flexible and should make it so you don\'t need to game the holiday system to get what you need.',
+                      sub:['If you plan to take leave, you have to announce it to the Client and Leader within 2 weeks before you leave.']
+                    }
+                    ]
+                },
+                ]
+                
+            }
+            ],
+            note : 'All the benefits will be not valid when the resignation letter is accepted.'
+        },
+
+        listBonus :[
+        {text: 'Based on the annual business results and the level of work completion of employees. The employer will decide the annual bonus for the employee.'},
+        {text: 'Salary base bonus: The average of all the main salaries received in the year (the amount has not been deducted).'},
+        {text: 'Employees who have worked for a full 01 year will receive the 13th month\'s salary.'},
+        {text: 'For employees with working time less than 1 year, the bonus amount is calculated according to the actual working time rate or the employer decides the corresponding 13th monthly salary.'},
+        {text: 'Bonus programs for staff based on performance and projects'},
+        {text: 'Time for bonus payment: at the end of the year, before the Lunar New Year holiday'},
+        {text: 'Team building: once per year'},
+        {text: 'Every month, the employer is responsible for deducting the insurance fund of 32% (social insurance 25.5% - unemployment insurance 2% - health insurance 4.5%) from the total basic salary fund of the Company.'},
+        {text: 'When you are sick or pregnant, SS pays as follows:', subText: [ 
+        'The salary is less 20x base salary -> SS pays full salary',
+        'The salary is higher 20x base salary -> SS pays a maximum of 20x base salary.'
+        ]},
+        {text: '20x base salary is 29.800.000VND'},
+        {text: 'Have one day to work at home each month, but there must be a particular reason such as health problems, family issues, etc... (except admin & accountant)'},
+        {text: 'Staff who introduce a new candidate succeeding in probation time will receive an introduction bonus as follows:', subText:['With Fresher position: 100AUD; Junior: 200AUD; Mid-senior: 300AUD; Senior team leader: 400 AUD']},
+        {text: 'Checked up health per year.'},
+        {text: 'Pay private health insurance PVI when you have been working for one year.'},
+        {text: 'About Over Time Working: SS pays $10 per hour.'},
+        ],
+
+        listTraining : {
+            description: 'As the part of the company\'s ongoing investment into professional development for staff, the company offers staff with opportunities to be part of training programs to improve their skills, knowledge, and future development such as:',
+            text: [
+             'Pluralsight portal access for self-learning',
+             'Opportunities to move across various projects under different technology stacks to gain more experience, and challenges and learn new skills',
+             'Extern training courses where applicable',
+             'Internal training by senior or specialist staff',
+             'On the job and ongoing English coaching classes to improve communication, writing and confidence in conversation',
+             'On-site visit to gain more cultural and commercial experience',
+            ],
+            info :[{
+                name : 'Link online training',
+                text : 'https://www.pluralsight.com/',
+                url : 'https://www.pluralsight.com/',
+            },
+            {
+                name : 'Email login',
+                text : 'luan@siliconstack.com.au',
+            },
+            {
+                name : 'Password',
+                text : 'S1l1conStack',
+
+            }]
+        }
+        ,
+
+        listOpportunities : [
+        'Staff who demonstrated commitment, loyalty, teamwork and innovation will have the opportunity to work in our remote office in Australia or India for an extended period. This is an opportunity for you and your family to work remotely but also experience the local culture of life and food. The VISA will be sponsored by the company and partially funded.',
+        'Depending on certain projects, staff will be fully sponsored to Australia for training and work experience.'
+        ],
+
+        listGeneralRules : [
+        'The salary is confidential information, each person has a different salary, so we are not allowed to share the company\'s confidential information with anyone. This is the company\'s rule, if you disobey, you will be warned for the first time, and the second time your labor contract will be terminated.',
+        'When you decide to resign from SS, you aren\'t permitted to share any information about reviewing your salary and your salary that other companies offered to you. If SS finds out you are sharing with everyone, SS will punish you with your salary in that month once you leave at that time.',
+        'You are not allowed to bring your phone to film or take any photos in any cases at the Company’s bathroom.',
+        'It is strictly forbidden to have an interview with another company at the working time while you are still a member of SS, SS dismisses you immediately.',
+        ]
+
+
+    }
+  "
+    class="content"
+  >
+    <div class="content__rules py-4">AUSTRAX VN’S RULES</div>
+    <div>
+      We offer full-time employees a range of great benefits! Learn all about them below:
+      <ul>
+        <template x-for="rule in listRules">
+          <li x-text="rule"></li>
+        </template>
+      </ul>
+    </div>
+    <hr />
+    <div x-data="{ open: false }">
+      <div x-on:click="open = ! open">
+        <p class="content__concept">
+          I. PROBATIONARY PERIOD:<i :class="!open ? 'bi bi-chevron-down': 'bi bi-chevron-up'"></i>
+        </p>
+      </div>
+
+      <div x-show="open" x-collapse.duration.1000ms>
+        <div>
+          <p class="content__description" x-text="detailProbation.subtitle"></p>
+          <ul>
+            <template x-for="probation in detailProbation.text">
+              <li x-text="probation"></li>
+            </template>
+          </ul>
+          <div class="content__note">
+            <i class="bi bi-exclamation-triangle pe-2"></i>
+            <span x-text="detailProbation.note"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div x-data="{ open: false }">
+      <div x-on:click="open = ! open">
+        <p class="content__concept">
+          II. PASSED PROBATION:<i :class="!open ? 'bi bi-chevron-down': 'bi bi-chevron-up'"></i>
+        </p>
+      </div>
+
+      <div x-show="open" x-collapse.duration.1000ms>
+        <ul>
+          <template x-for="passProbation in listPassProbation">
+            <li x-text="passProbation"></li>
+          </template>
+        </ul>
+      </div>
+    </div>
+    <hr />
+    <div x-data="{ open: false }">
+      <div x-on:click="open = ! open">
+        <p class="content__concept">III. BENEFIT:<i :class="!open ? 'bi bi-chevron-down': 'bi bi-chevron-up'"></i></p>
+      </div>
+
+      <div x-show="open" x-collapse.duration.1000ms>
+        <template x-for="benefit, idx in listBenefits.mainContent">
+          <div>
+            <p class="content__title" x-text="(idx+10).toString(36).toUpperCase() + '. '+  benefit.title"></p>
+            <p class="content__description" x-text="benefit.description"></p>
+            <div>
+              <template x-for="subtitle, idx in benefit.subtitle">
+                <div>
+                  <template x-if="subtitle.sub.length!=0">
+                    <div class="content__subtitle">
+                      #<span x-text="idx+1"></span>
+                      <span x-text="subtitle.sub"></span>
+                    </div>
+                  </template>
+                  <div>
+                    <p class="content__subDescription" x-text="subtitle.subDescription"></p>
+                    <ul>
+                      <template x-for="text in subtitle.text">
+                        <div>
+                          <li x-text="text.main ? text.main : text"></li>
+                          <template x-if="text.main">
+                            <ul>
+                              <template x-for="sub in text.sub">
+                                <li x-text="sub"></li>
+                              </template>
+                            </ul>
+                          </template>
+                        </div>
+                      </template>
+                    </ul>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </template>
+        <div class="content__note">
+          <i class="bi bi-exclamation-triangle pe-2"></i>
+          <span x-text="listBenefits.note"></span>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div x-data="{ open: true }">
+      <div x-on:click="open = ! open">
+        <p class="content__concept">IV. BONUS:<i :class="!open ? 'bi bi-chevron-down': 'bi bi-chevron-up'"></i></p>
+      </div>
+
+      <div x-show="open" x-collapse.duration.1000ms>
+        <ul>
+          <template x-for="bonus in listBonus">
+            <div>
+              <li x-text="bonus.text"></li>
+              <ul>
+                <template x-for="text in bonus.subText">
+                  <li x-text="text"></li>
+                </template>
+              </ul>
+            </div>
+          </template>
+        </ul>
+      </div>
+    </div>
+    <hr />
+    <div x-data="{ open: true }">
+      <div x-on:click="open = ! open">
+        <p class="content__concept">V. TRAINING:<i :class="!open ? 'bi bi-chevron-down': 'bi bi-chevron-up'"></i></p>
+      </div>
+      <div x-show="open" x-collapse.duration.1000ms>
+        <p class="content__description" x-text="listTraining.description"></p>
+
+        <ul>
+          <div>
+            <template x-for="text in listTraining.text">
+              <li x-text="text"></li>
+            </template>
+            <template x-for="info in listTraining.info">
+              <div>
+                <span class="content__info" x-text="info.name"></span>:
+                <template x-if="info.url">
+                  <a x-text="info.text" :href="info.url ? info.text.toString() : ''"></a>
+                </template>
+                <template x-if="!info.url">
+                  <span x-text="info.text"></span>
+                </template>
+              </div>
+            </template>
+          </div>
+        </ul>
+      </div>
+    </div>
+    <hr />
+    <div x-data="{ open: true }">
+      <div x-on:click="open = ! open">
+        <p class="content__concept" style="color: rgb(45, 45, 176)">
+          On-site Opportunities in Australia/India:<i :class="!open ? 'bi bi-chevron-down': 'bi bi-chevron-up'"></i>
+        </p>
+      </div>
+      <div x-show="open" x-collapse.duration.1000ms>
+        <ul>
+          <template x-for="opportunity in listOpportunities">
+            <li x-text="opportunity"></li>
+          </template>
+        </ul>
+      </div>
+    </div>
+    <hr />
+
+    <div x-data="{open:true}">
+      <div @click="open = !open">
+        <p class="content__concept">GENARAL RULES:<i :class="!open ? 'bi bi-chevron-down': 'bi bi-chevron-up'"></i></p>
+      </div>
+      <div class="content__general" x-show="open" x-collapse.duration.1000ms>
+        <template x-for="general in listGeneralRules">
+          <li style="list-style-type: none">
+            <i class="bi bi-x-lg"></i>
+            <span x-text="general"></span>
+          </li>
+        </template>
+      </div>
+    </div>
+  </body>
+</html>
